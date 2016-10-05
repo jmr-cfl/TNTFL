@@ -118,25 +118,29 @@ class RecentPage(Get.RecentPage, Deployment):
     pass
 
 
-class PlayerApi(Get.PlayerApi, Deployment):
-    pass
-
-
-class HeadToHeadApi(Get.HeadToHeadApi, Deployment):
-    pass
-
-
-class RecentApi(Get.RecentApi, Deployment):
-    pass
-
-
-class LadderApi(Get.LadderApi, Deployment):
-    pass
-
-
-class GameApi(Get.GameApi, Deployment):
-    pass
-
-
 class GamesApi(Get.GamesApi, Deployment):
+    pass
+
+
+class LegacyPlayerApi(Get.LegacyPlayerApi, Deployment):
+    pass
+
+
+class LegacyHeadToHeadApi(Get.LegacyHeadToHeadApi, Deployment):
+    pass
+
+
+class LegacyRecentApi(Get.LegacyRecentApi, Deployment):
+    pass
+
+
+class LegacyLadderApi(Get.LegacyLadderApi, Deployment):
+    pass
+
+
+class LegacyGameApi(Get.LegacyGameApi, Deployment):
+    pass
+
+
+class LegacyGamesApi(Get.LegacyGamesApi, Deployment):
     pass

@@ -10,26 +10,37 @@ In the JSON returned, links to other resources are represented by an object with
 ### Player Info
 `player/<playername>/json`
 
-### Player games
-`player/<playername>/games/json`
-
-Contains full game data, rather than href links; because of this, responses could be quite large.
-
 ### Game Info
 `game/<gameid>/json`
 
 Where `gameid` is the epoch of when the game was played.
 
 ### Game list
-`games.cgi?view=json&from=<time>&to=<time>`
+`games.cgi`
+
+Returns a list of games. Can be limited to a player or limited to head to head games between two players.
 
 Arguments:
 
-* `from` specifies the epoch to start at
+* `player` (optional) specifies the player to return games for.
 
-* `to` specifies the epoch to stop at
+* `player1` (optional) specifies the first player to return head to head games for.
 
-* `includeDeleted` (optional) specifies whether to include deleted games. Can be 0 or 1, defaults to 0
+* `player2` (optional) specifies the second player to return head to head games for.
+
+* `from` (optional) specifies the epoch to start at.
+
+* `to` (optional) specifies the epoch to stop at.
+
+* `includeDeleted` (optional) specifies whether to include deleted games. Can be 0 or 1, defaults to 0.
+
+* `limit` (optional) specifies the maximum number of games to return. Defaults to 10.
+
+Examples:
+
+* `games.cgi?player=<player>&from=<time>&to=<time>`
+
+* `games.cgi?player1=<player>&player2=<player>&limit=100`
 
 ### Add Game
 `game/add/json` (POST)
@@ -56,10 +67,3 @@ Arguments:
 * `gamesTo` (optional) epoch to end at
 
 Specifying `gamesFrom` and `gamesTo` calculates a ladder for the given time range.
-
-### Recent Games
-`recent/json`
-
-Arguments:
-
-* `limit` (optional) number of most recent games to return, defaults to 10.
