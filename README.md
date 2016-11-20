@@ -15,32 +15,23 @@ In the JSON returned, links to other resources are represented by an object with
 
 Where `gameid` is the epoch of when the game was played.
 
-### Game list
-`games.cgi`
+### Recent games
+`games/recent`
 
-Returns a list of games. Can be limited to a player or limited to head to head games between two players.
+`games/recent/limit/<limit>`
 
-Arguments:
+### Player games
+`games/player/<playername>/`
 
-* `player` (optional) specifies the player to return games for.
+### Head to Head games
+`games/headtohead/<playername>/<playername>/`
 
-* `player1` (optional) specifies the first player to return head to head games for.
+### All Games
+`games`
 
-* `player2` (optional) specifies the second player to return head to head games for.
+`games/limit/<limit>/`
 
-* `from` (optional) specifies the epoch to start at.
-
-* `to` (optional) specifies the epoch to stop at.
-
-* `includeDeleted` (optional) specifies whether to include deleted games. Can be 0 or 1, defaults to 0.
-
-* `limit` (optional) specifies the maximum number of games to return. Defaults to 10.
-
-Examples:
-
-* `games.cgi?player=<player>&from=<time>&to=<time>`
-
-* `games.cgi?player1=<player>&player2=<player>&limit=100`
+`games/between/<epoch>/<epoch>/`
 
 ### Add Game
 `game/add/json` (POST)

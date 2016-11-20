@@ -5,11 +5,17 @@ RewriteEngine on
 RewriteBase /~tlr/tntfl
 
 RewriteRule (.*)/json$ $1?view=json
+RewriteRule (.*)/between/([0-9]+)/([0-9]+)/$ $1?from=$2&to=$3
+RewriteRule (.*)/limit/([0-9]+)/$ $1?limit=$2
 
 RewriteRule ^game(.cgi)?/([^/]+)$  game/$2/   [R]
 RewriteRule ^game(.cgi)?/add/ game.cgi?method=add [QSA]
 RewriteRule ^game(.cgi)?/([0-9]+)/delete$ delete.cgi?game=$2 [QSA]
 RewriteRule ^game(.cgi)?/([0-9]+)/ game.cgi?method=view&game=$2 [QSA]
+
+RewriteRule ^games(.cgi)?/recent/ game.cgi [QSA]
+RewriteRule ^games(.cgi)?/player/([a-zA-Z]+)/ game.cgi?player=$2 [QSA]
+RewriteRule ^games(.cgi)?/headtohead/([a-zA-Z]+)/([a-zA-Z]+)/$ games.cgi?player1=$2&player2=$3 [QSA]
 
 <Files "delete.cgi">
   AuthType                basic
