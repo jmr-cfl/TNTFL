@@ -51,10 +51,4 @@ Returns a game resource representing the added game.
 ### Ladder
 `ladder/json`
 
-Arguments:
-
-* `gamesFrom` (optional) epoch to start at
-
-* `gamesTo` (optional) epoch to end at
-
-Specifying `gamesFrom` and `gamesTo` calculates a ladder for the given time range.
+`ladder/between/<epoch>/<epoch>/json`
