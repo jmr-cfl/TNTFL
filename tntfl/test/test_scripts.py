@@ -67,25 +67,13 @@ class GamesApi(Get.GamesApi, Deployment):
     pass
 
 
-class LegacyPlayerApi(Get.LegacyPlayerApi, Deployment):
+class PlayerApi(Get.PlayerApi, Deployment):
     pass
 
 
-class LegacyHeadToHeadApi(Get.LegacyHeadToHeadApi, Deployment):
+class LadderApi(Get.LadderApi, Deployment):
     pass
 
 
-class LegacyRecentApi(Get.LegacyRecentApi, Deployment):
-    pass
-
-
-class LegacyLadderApi(Get.LegacyLadderApi, Deployment):
-    pass
-
-
-class LegacyGameApi(Get.LegacyGameApi, Deployment):
-    pass
-
-
-class LegacyGamesApi(Get.LegacyGamesApi, Deployment):
+class GameApi(Get.GameApi, Deployment):
     pass

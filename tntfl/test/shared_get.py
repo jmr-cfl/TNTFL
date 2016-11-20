@@ -158,7 +158,7 @@ class GamesApi(Tester):
         self.assertEqual(response[3]['date'], 1430928939)
 
 
-class LegacyPlayerApi(Tester):
+class PlayerApi(Tester):
     def testPlayerJson(self):
         response = self._getJson('player.cgi', 'player=rc&view=json')
         self.assertEqual(response['name'], "rc")
@@ -173,25 +173,8 @@ class LegacyPlayerApi(Tester):
         self.assertEqual(response['total']['losses'], 16)
         self.assertEqual(response['total']['gamesToday'], 0)
 
-    def testPlayerGamesJsonReachable(self):
-        response = self._getJson('player.cgi', 'player=rc&method=games&view=json')
-        self.assertEqual(len(response), 20)
-        self.assertEqual(response[0]['date'], 1278339173)
 
-
-class LegacyHeadToHeadApi(Tester):
-    def testHeadToHeadGamesJsonReachable(self):
-        response = self._getJson('headtohead.cgi', 'player1=jrem&player2=prc&method=games&view=json')
-        self.assertEqual(len(response), 11)
-        self.assertEqual(response[0]['date'], 1392832399)
-
-
-class LegacyRecentApi(Tester):
-    def testRecentJsonReachable(self):
-        response = self._getJson('recent.cgi', 'view=json')
-
-
-class LegacyLadderApi(Tester):
+class LadderApi(Tester):
     def testReachable(self):
         response = self._getJson('ladder.cgi', 'view=json')
 
@@ -206,7 +189,7 @@ class LegacyLadderApi(Tester):
         self.assertEqual(response[2]['skill'], -12.5)
 
 
-class LegacyGameApi(Tester):
+class GameApi(Tester):
     def test(self):
         response = self._getJson('game.cgi', 'method=view&game=1223308996&view=json')
         self.assertEqual(response['red']['name'], 'jrem')
@@ -243,38 +226,3 @@ class LegacyGameApi(Tester):
         self.assertTrue('deleted' in response)
         self.assertEqual(response['deleted']['by'], 'eu')
         self.assertEqual(response['deleted']['at'], 1430915500)
-
-
-class LegacyGamesApi(Tester):
-    def assertDictEqualNoHref(self, first, second):
-        del(first['red']['href'])
-        del(first['blue']['href'])
-        del(second['red']['href'])
-        del(second['blue']['href'])
-        self.maxDiff = None
-        self.assertDictEqual(first, second)
-
-    def test(self):
-        response = self._getJson('games.cgi', 'view=json&from=1430402614&to=1430991615')
-        self.assertEqual(len(response), 5)
-        self.assertEqual(response[0]['date'], 1430402615)
-        self.assertDictEqualNoHref(response[0], self._getJson('game.cgi', 'method=view&game=1430402615&view=json'))
-        self.assertEqual(response[4]['date'], 1430991614)
-
-    def testLimit(self):
-        response = self._getJson('games.cgi', 'view=json&from=1430402614&to=1430991615&limit=2')
-        self.assertEqual(len(response), 2)
-        self.assertEqual(response[0]['date'], 1430928939)
-        self.assertEqual(response[1]['date'], 1430991614)
-
-    def testDeleted(self):
-        response = self._getJson('games.cgi', 'view=json&from=1430402614&to=1430991615&includeDeleted=1')
-        self.assertEqual(len(response), 6)
-        self.assertEqual(response[3]['deleted']['at'], 1430915500)
-        self.assertEqual(response[3]['deleted']['by'], 'eu')
-        self.assertEqual(response[3]['date'], 1430915499)
-
-    def testNoDeleted(self):
-        response = self._getJson('games.cgi', 'view=json&from=1430402614&to=1430991615&includeDeleted=0')
-        self.assertEqual(len(response), 5)
-        self.assertEqual(response[3]['date'], 1430928939)
