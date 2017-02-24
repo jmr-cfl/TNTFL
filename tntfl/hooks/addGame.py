@@ -27,7 +27,7 @@ def rankChangeField(playerName, posChange, posAfter):
     return field
 
 
-def publishToSlack(game):
+def do(game):
     if os.path.exists(Constants.configFile):
         config = ConfigParser.RawConfigParser()
         config.readfp(open(Constants.configFile, 'r'))
